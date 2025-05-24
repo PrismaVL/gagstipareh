@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>For Lei</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffb5b5;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 20px;
+    }
+
+    .envelope-container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+    }
+
+    .envelope {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-color: #ff9bb3;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: all 0.3s ease;
+      z-index: 5;
+    }
+
+    .envelope:before {
+      content: '';
+      position: absolute;
+      top: 1px;
+      width: 0;
+      height: 0;
+      border-left: 150px solid transparent;
+      border-right: 150px solid transparent;
+      border-top: 100px solid #ff7b9c;
+      transform-origin: top;
+      transform: rotateX(0deg);
+      z-index: -1;
+      transition: all 0.3s ease;
+    }
+
+    .envelope:hover {
+      transform: translateY(-10px);
+    }
+
+    .letter {
+      position: absolute;
+      background-color: white;
+      width: 280px;
+      height: 180px;
+      left: 10px;
+      top: 110px;
+      transition: all 0.3s ease 0.3s;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 18px;
+      color: #333;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      opacity: 0;
+    }
+
+    .envelope.open:before {
+      transform: rotateX(180deg);
+    }
+
+    .envelope.open .letter {
+      transform: translateY(-180px);
+      opacity: 1;
+    }
+
+    .popup {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0, 0, 0, 0.7);
+      z-index: 100;
+      justify-content: center;
+      align-items: center;
+      padding: 20px;
+    }
+
+    .popup-content {
+      background-color: white;
+      padding: 30px 20px;
+      border-radius: 10px;
+      text-align: center;
+      max-width: 400px;
+      width: 100%;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.5s;
+      position: relative;
+      z-index: 101;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .popup-content h2 {
+      color: #ff7b9c;
+      margin-top: 0;
+    }
+
+    .popup-content p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin-bottom: 15px;
+    }
+
+    .letter-content {
+      padding: 20px;
+      text-align: center;
+    }
+
+    @media (max-width: 400px) {
+      .envelope-container {
+        width: 90vw;
+        height: calc(90vw * 0.66);
+      }
+
+      .letter {
+        width: 90%;
+        height: 80%;
+        left: 5%;
+        top: 60%;
+        font-size: 16px;
+      }
+
+      .envelope:before {
+        border-left: 45vw solid transparent;
+        border-right: 45vw solid transparent;
+        border-top: 25vw solid #ff7b9c;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="envelope-container">
+    <div class="envelope" id="envelope">
+      <div class="letter">
+        <div class="letter-content">
+          <p>For Leila</p>
+          <p>❤️</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="popup" id="popup">
+    <div class="popup-content">
+      <h2>Dear Francheska Leila T. Ison,</h2>
+      <p>I've been wanting to tell you this nung last week pa...</p>
+      <p>Napansin ko na nagkakaron ako ng feelings para sa'yo, at tuwing magkausap o magkakalaro tayo, napapangiti ako kasi ang saya mong kasama.</p>
+      <p>Every time napapatawa kita, ang sarap lang sa feeling kaya kahit ako napapangiti rin e HAHAHAAH</p>
+      <p>Pero alam ko naman na hindi mo ako gusto, at medyo hindi na rin tayo nakakapag-usap katulad ng dati. Gusto ko lang malaman mo na ayun, gusto kita Lei</p>
+      <p>on some chalant shit - Jay</p>
+    </div>
+  </div>
+
+  <script>
+    const envelope = document.getElementById('envelope');
+    const popup = document.getElementById('popup');
+
+    envelope.addEventListener('click', function () {
+      this.classList.add('open');
+      setTimeout(() => {
+        popup.style.display = 'flex';
+      }, 600);
+    });
+  </script>
+</body>
+</html>
